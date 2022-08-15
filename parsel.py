@@ -4,20 +4,20 @@ import math
 import parselmouth
 from parselmouth import praat
 
-testFiles = [ 'Close_back_rounded_vowel', 'Close_back_unrounded_vowel', 
-              'Close_central_rounded_vowel', 'Close_central_unrounded_vowel', 
-              'Close_front_rounded_vowel', 'Close_front_unrounded_vowel', 
-              'Close-mid_front_unrounded_vowel', 'Mid-central_vowel', 
-              'Near-close_near-back_rounded_vowel', 'Near-close_near-front_rounded_vowel',
-              'Near-close_near-front_unrounded_vowel', 'Open-mid_front_rounded_vowel', 
-              'PR-open_back_rounded_vowel', 'PR-open-mid_back_rounded_vowel' ]
+wikiTestFiles = [ 'Close_back_rounded_vowel', 'Close_back_unrounded_vowel', 
+                  'Close_central_rounded_vowel', 'Close_central_unrounded_vowel', 
+                  'Close_front_rounded_vowel', 'Close_front_unrounded_vowel', 
+                  'Close-mid_front_unrounded_vowel', 'Mid-central_vowel', 
+                  'Near-close_near-back_rounded_vowel', 'Near-close_near-front_rounded_vowel',
+                  'Near-close_near-front_unrounded_vowel', 'Open-mid_front_rounded_vowel', 
+                  'PR-open_back_rounded_vowel', 'PR-open-mid_back_rounded_vowel' ]
 
 def Average(arr) :
     return sum(arr)/len(arr)
 
 
-def analyzeVowel(testFile):
-    testFileName = "samples/" + testFile + ".wav"
+def analyzeVowel(testFile, directory):
+    testFileName = directory + "/" + testFile + ".wav"
     sound = parselmouth.Sound(testFileName) 
     f0min=75
     f0max=300
@@ -44,6 +44,6 @@ def analyzeVowel(testFile):
     testFile.replace('.*/', '')
     print("%s, %.1f, %.1f, %.1f" % (testFile, Average(f1_list), Average(f2_list), Average(f3_list)))
 
-for aFile in testFiles:
-    analyzeVowel(aFile)
+for aFile in wikiTestFiles:
+    analyzeVowel(aFile, "wikipedia")
 
