@@ -12,9 +12,13 @@ wikiTestFiles = [ 'Close_back_rounded_vowel', 'Close_back_unrounded_vowel',
                   'Near-close_near-front_unrounded_vowel', 'Open-mid_front_rounded_vowel', 
                   'PR-open_back_rounded_vowel', 'PR-open-mid_back_rounded_vowel' ]
 
+uclaTestFiles = [ 'ae', 'a_Front', 'BackwardSchwa', 'BackwardScriptA', 'BackwardsEpsilon', 'BarredI',
+                  'BarredO', 'BarredU', 'CapitalOE', 'CapitalU', 'CapitalY', 'Caret', 'CentralA',
+                  'ClosedSidewaysEpsilon', 'Epsilon', 'e', 'i', 'LowerCaseOE', 'OpenO', 'o',
+                  'RamsHorns', 'ScriptA', 'SlashO', 'SmallCapI', 'UpsideDownA', 'UpsideDownM', 'u', 'y' ]
+
 def Average(arr) :
     return sum(arr)/len(arr)
-
 
 def analyzeVowel(testFile, directory):
     testFileName = directory + "/" + testFile + ".wav"
@@ -46,4 +50,7 @@ def analyzeVowel(testFile, directory):
 
 for aFile in wikiTestFiles:
     analyzeVowel(aFile, "wikipedia")
+
+for aFile in uclaTestFiles:
+    analyzeVowel(aFile, "ucla")
 
