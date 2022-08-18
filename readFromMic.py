@@ -24,12 +24,12 @@ asound.snd_lib_error_set_handler(None)
 stream=p.open(format=pyaudio.paInt16,channels=1,rate=samplingRate,input=True,
               frames_per_buffer=nSamples) #uses default input device
 
-# create a numpy array holding a single read of audio data
-for i in range(10): #to it a few times just to see
-    data = np.fromstring(stream.read(nSamples),dtype=np.int16)
+# Read and convert to numpy array 
+for i in range(5):
+    data = np.frombuffer(stream.read(nSamples), 'int16')
     print(data)
 
-# close the stream gracefully
+# Done 
 stream.stop_stream()
 stream.close()
 p.terminate()
