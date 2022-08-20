@@ -12,13 +12,18 @@ from ctypes import *
 nSamples = 4096       # number of samples 
 nSamples = 8192 # number of samples 
 samplingRate = 44100  # sampling rate in Hz
+samplingRate *= 4  # sampling rate in Hz
+nSamples *= 4
+
+pausa = nSamples/samplingRate*200
+print(pausa)
 
 #####################
 # Setup the stage
 
 fig = plt.figure()
 plt.xlim(-2500, -500)
-plt.ylim(-850,-200)
+plt.ylim(-900,-200)
 
 def addReferencePoint(label, f1, f2, f3) :
   plt.annotate(label,
@@ -114,9 +119,10 @@ movingPoints, = plt.plot(x, y, marker='o',color='r')
 
 silence = 0
 # moving point
-while silence<20 : 
+while silence<pausa : 
     data = np.frombuffer(stream.read(nSamples), 'int16')
     result = analyzeSound(data, samplingRate)
+    print("%.0f\t%.0f\t%.0f" % (result[0], result[1], result[2]) )
     x = -result[1]
     y = -result[0]
     movingPoints.remove()
